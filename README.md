@@ -13,20 +13,20 @@ A multi-user blog site where you can write posts and see what other people are s
 
 ## Setup
 
-1. Clone this repo
+1. Clone repo
 
 2. Install dependencies:
    ```
    npm install
    ```
 
-3. Copy `.env.example` to `.env` and fill in your MongoDB connection string and session secret:
+3. Copy `.env.example` to `.env` and fill in MongoDB connection string and session secret:
    ```
-   MONGODB_URI=mongodb://localhost:27017/simple-blog
-   SESSION_SECRET=your-secret-key-here
+   MONGODB_URI=
+   SESSION_SECRET=
    ```
 
-4. (Optional) Run the seed script to create some demo users and posts:
+4. Optional to run seed script to create some demo users and posts:
    ```
    node seed.js
    ```
@@ -41,7 +41,7 @@ A multi-user blog site where you can write posts and see what other people are s
    npm run dev
    ```
 
-6. Open your browser and go to `http://localhost:3000`
+6. Open your browser and go to `http://localhost:whatever port`
 
 ## Features
 
