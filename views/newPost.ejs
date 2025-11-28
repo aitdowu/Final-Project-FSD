@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Post - StackBlog</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="form-section">
+  <div class="container">
+    <h2>Create New Post</h2>
+    
+    <% if (errors && errors.length > 0) { %>
+      <div class="error-box">
+        <ul>
+          <% errors.forEach(function(error) { %>
+            <li><%= error %></li>
+          <% }); %>
+        </ul>
+      </div>
+    <% } %>
+
+    <form method="POST" action="/posts" id="newPostForm">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" value="<%= formData.title || '' %>" required>
+        <span class="error-message" id="title-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="content">Content</label>
+        <textarea id="content" name="content" rows="10" required><%= formData.content || '' %></textarea>
+        <span class="error-message" id="content-error"></span>
+      </div>
+
+      <div class="form-group">
+        <label class="checkbox-label">
+          <input type="checkbox" name="isPublic" <%= formData.isPublic ? 'checked' : '' %>>
+          Make this post public
+        </label>
+      </div>
+
+      <button type="submit" class="btn">Create Post</button>
+      <a href="/dashboard" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</section>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - StackBlog</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="hero">
+  <div class="container">
+    <h2>Welcome to StackBlog</h2>
+    <p>A place to write posts and see what other people are sharing. Sign up and start writing!</p>
+  </div>
+</section>
+
+<section class="recent-posts">
+  <div class="container">
+    <h2>Recent Posts</h2>
+    <% if (recentPosts && recentPosts.length > 0) { %>
+      <div class="posts-list">
+        <% recentPosts.forEach(function(post) { %>
+          <article class="post-card">
+            <h3><a href="/users/<%= post.author.username %>"><%= post.title %></a></h3>
+            <p class="post-meta">By <a href="/users/<%= post.author.username %>"><%= post.author.username %></a> • <%= new Date(post.createdAt).toLocaleDateString() %></p>
+            <p class="post-snippet"><%= post.content.substring(0, 150) %><% if (post.content.length > 150) { %>...<% } %></p>
+          </article>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p>No posts yet. Be the first to post something!</p>
+    <% } %>
+    
+    <% if (!currentUser) { %>
+      <div class="cta">
+        <p>Want to start posting? <a href="/auth/register">Sign up here</a> or <a href="/auth/login">log in</a>.</p>
+      </div>
+    <% } %>
+  </div>
+</section>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
+

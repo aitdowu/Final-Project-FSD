@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feed - StackBlog</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="feed">
+  <div class="container">
+    <h2>Feed</h2>
+    <p>Public posts from other users</p>
+    
+    <% if (posts && posts.length > 0) { %>
+      <div class="posts-list">
+        <% posts.forEach(function(post) { %>
+          <article class="post-card">
+            <h3><a href="/users/<%= post.author.username %>"><%= post.title %></a></h3>
+            <p class="post-meta">
+              By <a href="/users/<%= post.author.username %>"><%= post.author.username %></a> • 
+              <%= new Date(post.createdAt).toLocaleDateString() %>
+            </p>
+            <p class="post-content"><%= post.content %></p>
+          </article>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p>No posts to show yet. Check back later or create your own post!</p>
+    <% } %>
+  </div>
+</section>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
+

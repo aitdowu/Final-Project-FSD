@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - StackBlog</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="profile">
+  <div class="container">
+    <h2>Your Profile</h2>
+    
+    <div class="profile-info">
+      <div class="info-item">
+        <strong>Username:</strong> <%= user.username %>
+      </div>
+      <div class="info-item">
+        <strong>Email:</strong> <%= user.email %>
+      </div>
+      <div class="info-item">
+        <strong>Bio:</strong> <%= user.bio || 'No bio yet' %>
+      </div>
+      <div class="info-item">
+        <strong>Account Type:</strong> <%= user.isPrivate ? 'Private' : 'Public' %>
+      </div>
+      <div class="info-item">
+        <strong>Member Since:</strong> <%= new Date(user.createdAt).toLocaleDateString() %>
+      </div>
+      <div class="info-item">
+        <strong>Total Posts:</strong> <%= postCount %>
+      </div>
+    </div>
+
+    <div class="profile-actions">
+      <a href="/settings" class="btn">Edit Settings</a>
+      <a href="/post-history" class="btn btn-secondary">View Post History</a>
+    </div>
+  </div>
+</section>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
+

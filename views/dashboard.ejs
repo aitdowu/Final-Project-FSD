@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - StackBlog</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="dashboard">
+  <div class="container">
+    <h2>Welcome back, <%= user.username %>!</h2>
+    
+    <div class="dashboard-actions">
+      <a href="/posts/new" class="btn">New Post</a>
+      <a href="/post-history" class="btn btn-secondary">Post History</a>
+      <a href="/feed" class="btn btn-secondary">Feed</a>
+      <a href="/profile" class="btn btn-secondary">Profile</a>
+      <a href="/settings" class="btn btn-secondary">Settings</a>
+    </div>
+
+    <div class="recent-posts-section">
+      <h3>Your Recent Posts</h3>
+      <% if (recentPosts && recentPosts.length > 0) { %>
+        <div class="posts-list">
+          <% recentPosts.forEach(function(post) { %>
+            <article class="post-card">
+              <h3><a href="/users/<%= user.username %>"><%= post.title %></a></h3>
+              <p class="post-meta">
+                <%= new Date(post.createdAt).toLocaleDateString() %> • 
+                <% if (post.isPublic) { %>
+                  <span class="public-badge">Public</span>
+                <% } else { %>
+                  <span class="private-badge">Private</span>
+                <% } %>
+                <a href="/posts/<%= post._id %>/edit" class="edit-link">Edit</a>
+              </p>
+              <p class="post-snippet"><%= post.content.substring(0, 100) %><% if (post.content.length > 100) { %>...<% } %></p>
+            </article>
+          <% }); %>
+        </div>
+      <% } else { %>
+        <p>You haven't posted anything yet. <a href="/posts/new">Create your first post!</a></p>
+      <% } %>
+    </div>
+  </div>
+</section>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
+

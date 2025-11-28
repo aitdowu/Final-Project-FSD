@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post History - StackBlog</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <%- include('partials/header') %>
+  <main>
+    <section class="post-history">
+  <div class="container">
+    <h2>Your Post History</h2>
+    
+    <% if (posts && posts.length > 0) { %>
+      <div class="posts-list">
+        <% posts.forEach(function(post) { %>
+          <article class="post-card">
+            <h3><%= post.title %></h3>
+            <p class="post-meta">
+              <%= new Date(post.createdAt).toLocaleDateString() %> • 
+              <% if (post.isPublic) { %>
+                <span class="public-badge">Public</span>
+              <% } else { %>
+                <span class="private-badge">Private</span>
+              <% } %>
+            </p>
+            <p class="post-snippet"><%= post.content.substring(0, 200) %><% if (post.content.length > 200) { %>...<% } %></p>
+            <div class="post-actions">
+              <a href="/posts/<%= post._id %>/edit" class="btn btn-small">Edit</a>
+              <form method="POST" action="/posts/<%= post._id %>/delete" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this post?');">
+                <button type="submit" class="btn btn-small btn-danger">Delete</button>
+              </form>
+            </div>
+          </article>
+        <% }); %>
+      </div>
+    <% } else { %>
+      <p>You haven't created any posts yet. <a href="/posts/new">Create your first post!</a></p>
+    <% } %>
+  </div>
+</section>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
+

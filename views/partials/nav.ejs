@@ -1,0 +1,15 @@
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+      <li><a href="/feed">Feed</a></li>
+      <li><a href="/dashboard">Dashboard</a></li>
+      <li><a href="/profile">Profile</a></li>
+      <li><a href="/auth/logout">Logout</a></li>
+    <% } else { %>
+      <li><a href="/auth/login">Login</a></li>
+      <li><a href="/auth/register">Sign Up</a></li>
+    <% } %>
+  </ul>
+</nav>
+
