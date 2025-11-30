@@ -95,7 +95,7 @@ app.get('/', async function(req, res) {
 app.listen(PORT, function() {
   console.log(`Server running on http://localhost:${PORT}`);
   if (!getDBStatus() && !process.env.MONGODB_URI) {
-    console.log('⚠️  Running in PREVIEW MODE - Database not connected');
+    console.log('Database not connected');
     console.log('   You can view pages but features requiring DB won\'t work');
   }
 });

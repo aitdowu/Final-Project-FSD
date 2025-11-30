@@ -20,7 +20,7 @@ A multi-user blog site where you can write posts and see what other people are s
    npm install
    ```
 
-3. Copy `.env.example` to `.env` and fill in MongoDB connection string and session secret:
+3. Create `.env` file and fill in MongoDB connection string and session secret:
    ```
    MONGODB_URI=
    SESSION_SECRET=
